@@ -64,6 +64,49 @@ Book.create({
 })
 .catch((err)=>
 next(err))
+});
+
+
+router.post('/books/delete/:id', (req,res,next)=>{
+  let id = req.params.id
+  Book.findByIdAndRemove(id)
+  .then((result)=>{
+    res.redirect('/books')
+  })
+  .catch((err)=>{
+    next(err)
+  })
+})
+
+
+
+
+router.get('/books/editbook/:id', (req,res,next)=>{
+
+  let id = req.params.id
+
+  Book.findById(id)
+  .then((theBook)=>{
+    res.render('book-views/edit', {book: theBook})
+  })
+})
+
+
+router.post('/books/update/:id', (req, res, next)=>{
+
+  let id = req.params.id
+  Book.findByIdAndUpdate(id, {
+    title: req.body.theTitle,
+    author: req.body.theAuthor,
+    image: req.body.image
+
+  })
+  .then((result)=>{
+    res.redirect('/books/details/' + id)
+  })
+  .catch((err)=>{
+    next(err)
+  })
 })
 
 

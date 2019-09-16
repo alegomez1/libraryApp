@@ -1,0 +1,17 @@
+
+
+<form action="/books/update/{{book._id}}" method="POST">
+
+<p>Title</p>
+<p>Current title: {{book.title}}</p>
+<input type="text" name="theTitle">
+
+<p>Author</p>
+<input type="text" name ="theAuthor" value="{{book.author}}">
+
+<p>Image</p>
+<input type="text" name = "theImage" placeholder="current image: {{book.image}}">
+
+<button>Save</button>
+
+</form>
